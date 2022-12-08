@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import Icon from "react-native-vector-icons/Entypo";
+import { Text, View, Image } from 'react-native'
+import React, { Component } from 'react';
 import styles from "./styles";
+import Entypo from "react-native-vector-icons/Entypo";
+import Feather from "react-native-vector-icons/Feather";
+import amazon from "../../assets/Images/amazon.png"
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-// const Nav = () => {
-//   const [height, setHeight] = useState(50);
-//   return (
-//     <View style={styles.nav}>
-//       {/* top nav */}
-//       <View style={[styles.top_nav, {height: 40, width: height}]}>
-//         <Icon name="menu"/>
-//       </View>
-//       {/* searchbar */}
-//       {/* bottom nav list */}
-//     </View>
-//   )
-// }
-
-// export default Nav
-
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    height: 50
-  }
-  componentWillUnmount () {
-    console.log("hello user");
-  }
+export class Nav extends Component {
   render() {
     return (
       <View style={styles.nav}>
-       {/* top nav */}
-       <View style={[styles.top_nav, { height: 40, width: this.state.height }]}>
-         <Icon name="menu" onPress={() => this.setState({width: 100})}/>
-       </View>
-       {/* searchbar */}
-       {/* bottom nav list */}
-     </View>
+        {/* top nav */}
+        <View style={styles.top_nav}>
+          <View style={styles.row}>
+            <TouchableOpacity>
+              <Entypo name='menu' style={styles.nav_icon} />
+            </TouchableOpacity>
+            <Image source={amazon} style={[styles.nav_image, styles.ml]} resizeMode={"center"}/>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.username}>NAZIM</Text>
+            <Feather name='user' size={30} style={[styles.nav_icon, styles.ml]} />
+            <View style={[styles.cart, styles.ml]}>
+              <Text style={styles.cart_items}>5</Text>
+              <Feather name='shopping-cart' size={30} style={styles.nav_icon} />
+            </View>
+          </View>
+        </View>
+        {/* searchbar */}
+        <View style={styles.searchbar}>
+
+        </View>
+        {/* footer nav links */}
+        <View style={styles.nav_links}>
+
+        </View>
+      </View>
     )
   }
 }
 
-export default Nav;
+export default Nav

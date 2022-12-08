@@ -1,12 +1,14 @@
-import { View, Text } from 'react-native';
-import styles from "./styles";
+import { Text, View } from 'react-native'
+import React, { Component } from 'react'
 
-const Footer = () => {
-  return (
-    <View>
-      <Text>Footer</Text>
-    </View>
-  )
+export class Footer extends Component {
+  render() {
+    return (
+      <View>
+        <Text>Footer</Text>
+      </View>
+    )
+  }
 }
 
 export default Footer
