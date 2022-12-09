@@ -25,7 +25,6 @@ export class Body extends Component {
   }
 
   render() {
-    console.log(this.state.data.length);
     return (
       <View>
         <ActivityIndicator 
@@ -34,7 +33,7 @@ export class Body extends Component {
         animating={this.state.animation}
         />
         <FlatList 
-          data={this.state.data.slice(0, 3)}
+          data={this.state.data}
           renderItem={({item, i}) => <Product data={item}/>}
           keyExtractor={(_, i) => i.toString()}
         />
