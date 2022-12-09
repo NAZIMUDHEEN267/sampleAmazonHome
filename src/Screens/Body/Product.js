@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableHighlight
 } from 'react-native'
 import React, { Component } from 'react';
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -33,27 +34,37 @@ export default class Product extends Component {
       }
     } 
 
-    return icons;
+    return (
+      <View style={{flexDirection: "row", marginTop: 5}}>
+        { icons }
+        <Text style={{fontSize: 10, fontWeight: "600", marginLeft: 5}}>{this.rate}</Text>
+      </View>
+    );
   }
 
   render() {
 
     return (
       <View style={styles.product}>
-        <View style={styles.product_image}>
+        <View style={styles.product_part}>
           <Image source={{ uri: this.image }} style={styles.image} resizeMode={'cover'} />
         </View>
-        <View style={styles.product_image}>
+        <View style={styles.product_part}>
           {/* product name */}
           <Text style={styles.title}>{this.title}</Text>
           {/* stars */}
-          <View style={{flexDirection: "row"}}>
-            {
-              this.starGenerator()
-            }
-          </View>
+          { this.starGenerator() }
           {/* rate */}
+            <Text style={styles.price}>{`$${this.price}`}</Text>
           {/* description */}
+          <Text>
+            {this.description.substring(0, 30) + "..."}
+          </Text>
+
+          {/* button */}
+          <TouchableHighlight style={styles.product_btn} onPress={() => alert("Thanks for adding cart")}>
+            <Text style={{alignItems: "center", textAlign: "center"}}>Add to Cart</Text>
+          </TouchableHighlight>
         </View>
       </View>
     )
@@ -61,13 +72,14 @@ export default class Product extends Component {
 }
 
 const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   product: {
     height: height / 3,
     width: width,
     flexDirection: "row"
   },
-  product_image: {
+  product_part: {
     width: "50%",
     height: "80%",
     alignSelf: "center",
@@ -80,5 +92,17 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "600",
     fontSize: 15
+  },
+  price: {
+    fontSize: 17
+  },
+  product_btn: {
+    padding: 8,
+    marginTop: 10,
+    backgroundColor: "orange",
+    borderColor: "#d1994f",
+    borderWidth: 2,
+    borderRadius: 5,
+    elevation: 2
   }
 })
