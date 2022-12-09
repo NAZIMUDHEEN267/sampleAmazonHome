@@ -1,4 +1,4 @@
-import { Text, View, ActivityIndicator, Image, ScrollView } from 'react-native'
+import { View, ActivityIndicator, FlatList, Text, SectionList, VirtualizedList } from 'react-native'
 import React, { Component } from 'react';
 import apiCall from '../../api/axios';
 import Product from './Product';
@@ -13,27 +13,31 @@ export class Body extends Component {
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    console.log(state.animation, this.state.animation);
-    return null;
-  }
-
   async componentDidMount() {
-    const getData = await apiCall();
-    if (!getData) {
-      this.setState({ animation: false });
-      throw new Error("data not fetched");
+    try {
+      const getData = await apiCall();
+      this.setState({data: getData});
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setState({animation: false});
     }
-    this.setState({ data: getData, animation: false });
   }
 
   render() {
+    console.log(this.state.data.length);
     return (
       <View>
-        <ActivityIndicator size={this.state.animation ? 30 : 0} color={"orange"} animating={this.state.animation} />
-        {
-          this.state.data.map((item) => <Product data={item} key={item.id} />)
-        }
+        <ActivityIndicator 
+        color={"orange"} 
+        size={this.state.animation ? 30 : 0} 
+        animating={this.state.animation}
+        />
+        <FlatList 
+          data={this.state.data.slice(0, 3)}
+          renderItem={({item, i}) => <Product data={item}/>}
+          keyExtractor={(_, i) => i.toString()}
+        />
       </View>
     )
   }
