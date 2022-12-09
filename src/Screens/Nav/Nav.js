@@ -1,10 +1,9 @@
-import { Text, View, Image, TextInput } from 'react-native'
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react';
 import styles from "./styles";
 import Entypo from "react-native-vector-icons/Entypo";
 import Feather from "react-native-vector-icons/Feather";
 import amazon from "../../assets/Images/amazon.png"
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export class Nav extends Component {
 
@@ -18,6 +17,7 @@ export class Nav extends Component {
     this.handleText = this.handleText.bind(this);
   }
 
+  // handling text event
   handleText(text) {
     this.setState({text});
   }
@@ -46,12 +46,21 @@ export class Nav extends Component {
         <View style={styles.searchbar}>
           <TextInput placeholder='search...' value={this.state.text} style={styles.search} onChangeText={this.handleText}/>
           <TouchableOpacity style={styles.search_btn}>
-            <Feather name='search' style={styles.nav_icon}/>
+            <Feather name='search' style={[styles.nav_icon, {fontWeight: "600", color: "#000"}]}/>
           </TouchableOpacity>
         </View>
         {/* footer nav links */}
         <View style={styles.nav_links}>
-
+          {
+            ["Wishlist", "Category", "Deals", "Sell"]
+            .map((item, i) => {
+              return (
+                <TouchableOpacity key={i} style={styles.link_item} onPress={() => alert("Thank you for clicking me..")} >
+                  <Text style={{ color: "#fff" }} >{item}</Text>
+                </TouchableOpacity>
+              )
+            })
+          }
         </View>
       </View>
     )

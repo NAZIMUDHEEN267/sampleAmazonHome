@@ -44,19 +44,25 @@ export default StyleSheet.create({
         height: 40,
         width: "100%",
         flexDirection: "row",
-        borderRadius: 5,
-        marginBottom: 5
+        borderRadius: 5
     },
     search: {
         backgroundColor: "#fff",
-        flex: 1,
+        flex: 8,
         paddingHorizontal: 10,
         borderRadius: 5
     },
     search_btn: {
         backgroundColor: "orange",
-        padding: 2,
         flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
         borderRadius: 5
+    },
+    nav_links: {
+        flexDirection: "row"
+    },
+    link_item: {
+        padding: 10
     }
 })
