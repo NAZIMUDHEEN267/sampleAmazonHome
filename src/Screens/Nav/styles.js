@@ -38,5 +38,25 @@ export default StyleSheet.create({
         fontWeight: "600",
         left: "50%",
         top: "-15%",
+    },
+    searchbar: {
+        backgroundColor: "#fff",
+        height: 40,
+        width: "100%",
+        flexDirection: "row",
+        borderRadius: 5,
+        marginBottom: 5
+    },
+    search: {
+        backgroundColor: "#fff",
+        flex: 1,
+        paddingHorizontal: 10,
+        borderRadius: 5
+    },
+    search_btn: {
+        backgroundColor: "orange",
+        padding: 2,
+        flex: 1,
+        borderRadius: 5
     }
 })
