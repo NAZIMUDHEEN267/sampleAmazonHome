@@ -1,7 +1,8 @@
-import { View, ActivityIndicator, FlatList, Text, SectionList, VirtualizedList } from 'react-native'
+import { View, ActivityIndicator, FlatList, ScrollView } from 'react-native'
 import React, { Component } from 'react';
 import apiCall from '../../api/axios';
 import Product from './Product';
+import Footer from '../Footer/Footer';
 
 export class Body extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export class Body extends Component {
   async componentDidMount() {
     try {
       const getData = await apiCall();
-      this.setState({data: getData});
+      this.setState({data: getData.products});
+      this.props.cb(0);
     } catch (error) {
       console.log(error);
     } finally {
@@ -32,11 +34,12 @@ export class Body extends Component {
         size={this.state.animation ? 30 : 0} 
         animating={this.state.animation}
         />
-        <FlatList 
-          data={this.state.data}
-          renderItem={({item, i}) => <Product data={item}/>}
-          keyExtractor={(_, i) => i.toString()}
-        />
+      
+      <ScrollView>
+        {
+          this.state.data.map((item, i) => <Product data={item} key={i} />)
+        } 
+      </ScrollView>
       </View>
     )
   }

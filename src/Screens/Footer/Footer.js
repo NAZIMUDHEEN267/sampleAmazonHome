@@ -1,4 +1,4 @@
-import { Text, View, Linking } from 'react-native';
+import { Text, View, Linking, Dimensions } from 'react-native';
 import React, { Component } from 'react';
 import styles from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -8,6 +8,11 @@ import Feather from 'react-native-vector-icons/Feather';
 export class Footer extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      footerHeight: 0
+    }
+
     this.link = this.link.bind(this);
   }
 
@@ -17,11 +22,12 @@ export class Footer extends Component {
   }
 
   render() {
+    console.log(this.props.top);
     return (
-      <View style={styles.footer}>
+      <View style={[styles.footer, {marginTop: this.props.top}]}>
         {/* footer top bar */}
         <View style={styles.footer_top}>
-          <Entypo name='triangle-up' size={20} style={styles.font}/>
+          <Entypo name='triangle-up' size={15} style={styles.font}/>
           <Text style={styles.font}>TOP OF PAGE</Text>
         </View>
 
@@ -52,13 +58,13 @@ export class Footer extends Component {
               <Feather name="globe" size={15} color={"#fff"}/>
               <Text style={[styles.font, {marginLeft: 15}]}>English</Text>
             </View>
-            <Text style={styles.font}>Switch Accounts</Text>
-            <Text style={styles.font}>Sign Out</Text>
+            <Text style={styles.font} onPress={this.link}>Switch Accounts</Text>
+            <Text style={styles.font} onPress={this.link}>Sign Out</Text>
           </View>
           <View style={styles.row}>
-            <Text style={[styles.font, {fontSize: 11}]}> Condition of Use </Text>
-            <Text style={[styles.font, {fontSize: 11}]}>Privacy Notice</Text>
-            <Text style={[styles.font, {fontSize: 11}]}>Interest-Based Ads</Text>
+            <Text style={[styles.font, { fontSize: 11 }]} onPress={this.link}> Condition of Use </Text>
+            <Text style={[styles.font, { fontSize: 11 }]} onPress={this.link}>Privacy Notice</Text>
+            <Text style={[styles.font, { fontSize: 11 }]} onPress={this.link}>Interest-Based Ads</Text>
           </View>
           <View style={styles.flex}>
             <FontAwesome name='copyright' size={10} color={"#fff"} />

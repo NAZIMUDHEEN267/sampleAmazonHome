@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     footer: {
-        position: "absolute",
-        bottom: 0,
         backgroundColor: "#232142",
         justifyContent: "space-between",
         width: "100%"
@@ -20,7 +18,7 @@ export default StyleSheet.create({
     },
     footer_center: {
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         padding: 10
     },
     footer_below: {

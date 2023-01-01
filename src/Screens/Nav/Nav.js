@@ -11,7 +11,7 @@ export class Nav extends Component {
     super(props);
 
     this.state = {
-      text: 'clothes'
+      text: 'products'
     }
 
     this.handleText = this.handleText.bind(this);

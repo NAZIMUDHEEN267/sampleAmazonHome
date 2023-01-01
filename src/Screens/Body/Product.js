@@ -13,15 +13,16 @@ export default class Product extends Component {
   constructor(props) {
     super(props);
 
-    const { image, title, rating: { rate }, price, description } = this.props.data;
-    this.image = image;
+    const { images, title, rating, price, description } = this.props.data;
+    this.image = images[0];
     this.title = title;
-    this.rate = rate;
+    this.rate = rating;
     this.price = price;
     this.description = description;
     this.starGenerator = this.starGenerator.bind(this);
   }
 
+  // stars for rating
   starGenerator() {
     const icons = new Array();
     let intVal = this.rate.toFixed(0);
@@ -37,7 +38,7 @@ export default class Product extends Component {
     return (
       <View style={{flexDirection: "row", marginTop: 5}}>
         { icons }
-        <Text style={{fontSize: 10, fontWeight: "600", marginLeft: 5}}>{this.rate}</Text>
+        <Text style={{fontSize: 10, fontWeight: "600", marginLeft: 5}}>{this.rate.toFixed(1)}</Text>
       </View>
     );
   }
