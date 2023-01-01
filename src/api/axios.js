@@ -6,6 +6,7 @@ async function apiCall() {
     try {
         const fetch = await axios.get(API_URL);
         const data = await fetch.data;
+        console.log(data);
         return data;
     } catch (err) {
         return err

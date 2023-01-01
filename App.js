@@ -11,7 +11,7 @@ const App = () => {
       {/* amazon nav */}
       <Nav />
       {/* amazon body */}
-      {/* <Body /> */}
+      <Body />
       {/* amazon footer */}
       <Footer />
     </View>
